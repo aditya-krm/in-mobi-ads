@@ -12,54 +12,32 @@ app.get("/", (_req, res) => {
 });
 
 app.post("/get-inmobi-ads", async (req, res): Promise<void> => {
-  const { userId, pageUrl, adSlots } = req.body;
-  console.log("Received request body:", req.body);
-
-  interface AdSlot {
-    id?: string;
-    height: number;
-    width: number;
-    pos?: number;
-    bidfloor?: number;
-    placementId: string;
-  }
-
-  interface ImpObject {
-    id: string;
+  
+  const imp = {
+    id: "Top Banner",
     banner: {
-      h: number;
-      w: number;
-      pos?: number;
-    };
-    bidfloor: number;
-    tagid: string;
-  }
-
-  const imp: ImpObject[] = (adSlots || []).map((slot: AdSlot, idx: number) => ({
-    id: slot.id || `slot${idx + 1}`,
-    banner: {
-      h: slot.height,
-      w: slot.width,
-      pos: slot.pos,
+      h: 250,
+      w: 300,
+      pos: 1,
     },
-    bidfloor: slot.bidfloor || 0.05,
-    tagid: slot.placementId,
-  }));
+    bidfloor: 0.05,
+    tagid: "10000433284",
+  };
 
   const requestBody = {
-    id: userId || `req-${Date.now() * Math.floor(Math.random() * 1000)}`,
+    id: "ae38b28f379745e0b9356ee2cddd8e99",
     imp,
     site: {
       id: "10000075085",
       domain: "app.freeboomshare.com",
-      page: pageUrl || req.headers.referer || "https://app.freeboomshare.com",
+      page: req.headers.referer || "https://app.freeboomshare.com/ad-testing",
       publisher: {
         id: "freeboomshare-pub",
         name: "freeboomshare",
         domain: "app.freeboomshare.com",
       },
     },
-    user: { id: userId },
+    user: "ae38b28f379745e0b9356ee2cddd8e99",
     device: {
       ua: req.headers["user-agent"],
       ip: req.ip,
