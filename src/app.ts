@@ -13,16 +13,18 @@ app.get("/", (_req, res) => {
 
 app.post("/get-inmobi-ads", async (req, res): Promise<void> => {
 
-  const imp = {
-    id: "Top Banner",
-    banner: {
-      h: 250,
-      w: 300,
-      pos: 1,
+  const imp = [
+    {
+      id: "Top Banner",
+      banner: {
+        h: 250,
+        w: 300,
+        pos: 1,
+      },
+      bidfloor: 0.05,
+      tagid: "10000433284",
     },
-    bidfloor: 0.05,
-    tagid: "10000433284",
-  };
+  ];
 
   const requestBody = {
     id: "ae38b28f379745e0b9356ee2cddd8e99",
