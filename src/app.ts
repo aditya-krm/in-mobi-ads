@@ -12,7 +12,7 @@ app.get("/", (_req, res) => {
 });
 
 app.post("/get-inmobi-ads", async (req, res): Promise<void> => {
-  const { userId, pageUrl, domain, adSlots } = req.body;
+  const { userId, pageUrl, adSlots } = req.body;
   console.log("Received request body:", req.body);
 
   interface AdSlot {
@@ -50,13 +50,13 @@ app.post("/get-inmobi-ads", async (req, res): Promise<void> => {
     id: userId || `req-${Date.now() * Math.floor(Math.random() * 1000)}`,
     imp,
     site: {
-      id: "freeboomshare-main", // i don't know what to put in all these fields
-      domain: domain || "app.freeboomshare.com",
+      id: "10000075085",
+      domain: "app.freeboomshare.com",
       page: pageUrl || req.headers.referer || "https://app.freeboomshare.com",
       publisher: {
         id: "freeboomshare-pub",
         name: "freeboomshare",
-        domain: domain || "app.freeboomshare.com",
+        domain: "app.freeboomshare.com",
       },
     },
     user: { id: userId },
