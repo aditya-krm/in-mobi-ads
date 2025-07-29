@@ -12,7 +12,7 @@ app.get("/", (_req, res) => {
 });
 
 app.post("/get-inmobi-ads", async (req, res): Promise<void> => {
-  
+
   const imp = {
     id: "Top Banner",
     banner: {
@@ -37,7 +37,9 @@ app.post("/get-inmobi-ads", async (req, res): Promise<void> => {
         domain: "app.freeboomshare.com",
       },
     },
-    user: "ae38b28f379745e0b9356ee2cddd8e99",
+    user: {
+      id: "ae38b28f379745e0b9356ee2cddd8e99",
+    },
     device: {
       ua: req.headers["user-agent"],
       ip: req.ip,
@@ -52,7 +54,7 @@ app.post("/get-inmobi-ads", async (req, res): Promise<void> => {
       requestBody,
       { headers: { "Content-Type": "application/json" } }
     );
-    console.log("InMobi response:", response.data);
+    console.log("InMobi response:", response.status, response.data);
 
     res.status(response.status).json(response.data);
   } catch (error: unknown) {
