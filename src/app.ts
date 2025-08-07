@@ -11,28 +11,38 @@ app.get("/", (_req, res) => {
   res.json({ message: "Welcome to the oRTB backend!", status: "running" });
 });
 
-app.post("/get-inmobi-ads", async (req, res): Promise<void> => {
-
-  const imp = [
-    {
-      id: "Top Banner",
-      banner: {
-        h: 250,
-        w: 300,
-        pos: 1,
-      },
-      bidfloor: 0.05,
-      tagid: "10000433284",
-    },
-  ];
+app.post("/get-inmobi-ads", async (_req, res): Promise<void> => {
+  // const imp = [
+  //   {
+  //     id: "Top Banner",
+  //     banner: {
+  //       h: 250,
+  //       w: 300,
+  //       pos: 1,
+  //     },
+  //     bidfloor: 0.05,
+  //     tagid: "10000433284",
+  //   },
+  // ];
 
   const requestBody = {
     id: "ae38b28f379745e0b9356ee2cddd8e99",
-    imp,
+    imp: [
+      {
+        id: "1",
+        banner: {
+          h: 250,
+          w: 300,
+          pos: 1,
+        },
+        bidfloor: 0.05,
+        tagid: "10000433284",
+      },
+    ],
     site: {
       id: "10000075085",
       domain: "app.freeboomshare.com",
-      page: req.headers.referer || "https://app.freeboomshare.com/ad-testing",
+      page: 'req.headers.referer || "https://app.freeboomshare.com/ad-testing"',
       publisher: {
         id: "freeboomshare-pub",
         name: "freeboomshare",
@@ -43,11 +53,12 @@ app.post("/get-inmobi-ads", async (req, res): Promise<void> => {
       id: "ae38b28f379745e0b9356ee2cddd8e99",
     },
     device: {
-      ua: req.headers["user-agent"],
-      ip: req.ip,
+      ua: 'req.headers["user-agent"]',
+      ip: "52.66.251.103",
     },
     at: 1,
     cur: ["USD"],
+    test: 1,
   };
 
   try {
